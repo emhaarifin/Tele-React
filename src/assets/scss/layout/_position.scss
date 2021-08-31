@@ -1,0 +1,15 @@
+.position {
+  &--lg-sticky {
+    @include breakpoint-up(lg) {
+      position: -webkit-sticky;
+      position: sticky !important;
+      top: 0;
+    }
+  }
+  &--relative {
+    position: relative;
+  }
+  &--fixed {
+    position: fixed;
+  }
+}

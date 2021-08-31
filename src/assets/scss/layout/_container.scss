@@ -1,0 +1,32 @@
+.container,
+.container-fluid {
+  width: 100%;
+  padding-right: 16px;
+  padding-left: 16px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@include breakpoint-up(sm) {
+  .container {
+    max-width: 540px;
+  }
+}
+
+@include breakpoint-up(md) {
+  .container {
+    max-width: 720px;
+  }
+}
+
+@include breakpoint-up(lg) {
+  .container {
+    max-width: 960px;
+  }
+}
+
+@include breakpoint-up(xl) {
+  .container {
+    max-width: 1140px;
+  }
+}

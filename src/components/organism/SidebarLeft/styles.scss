@@ -1,0 +1,16 @@
+.sidebar-left {
+  padding-left: 30px;
+  padding-right: 27px;
+  padding-bottom: 54px;
+  padding-top: 51px;
+  flex: 1;
+  @include breakpoint-down(sm) {
+    &--open {
+      background-color: red;
+      flex: 1;
+    }
+    &--close {
+      display: none;
+    }
+  }
+}

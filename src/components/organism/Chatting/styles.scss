@@ -1,0 +1,18 @@
+.chatting {
+  height: 100%;
+  &-content {
+    height: calc(100vh - 240px);
+    background-color: red !important;
+    padding: 25px 50px 0px 54px;
+  }
+  flex: 4;
+  @include breakpoint-down(sm) {
+    display: none;
+    &--close {
+      display: none;
+    }
+    &--open {
+      flex: 1;
+    }
+  }
+}

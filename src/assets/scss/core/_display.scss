@@ -1,0 +1,46 @@
+@mixin display-mixin() {
+  &-visible {
+    display: inline;
+  }
+  &-invisible {
+    display: none;
+  }
+}
+
+.display {
+  display: inline;
+  &--none {
+    display: none !important;
+  }
+  &--inline {
+    display: inline !important;
+  }
+  &--inline-block {
+    display: inline-block !important;
+  }
+
+  &- {
+    @include display-mixin();
+  }
+
+  &--sm {
+    @include breakpoint-up(sm) {
+      @include display-mixin();
+    }
+  }
+  &--md {
+    @include breakpoint-up(md) {
+      @include display-mixin();
+    }
+  }
+  &--lg {
+    @include breakpoint-up(lg) {
+      @include display-mixin();
+    }
+  }
+  &--xl {
+    @include breakpoint-up(xl) {
+      @include display-mixin();
+    }
+  }
+}
