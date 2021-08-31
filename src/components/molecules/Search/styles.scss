@@ -1,13 +1,30 @@
 .search {
-  position: relative;
   display: flex;
   align-items: center;
+  gap: 20px;
+  &-content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    position: relative;
+    .search-icon {
+      top: 0;
+      bottom: 0;
+      left: 20px;
+      position: absolute;
+    }
+  }
+  &-input {
+    font-size: 16px;
+    width: 100%;
+    height: 60px;
+    padding-left: 50px;
+    // padding: 0 50px;
+    &::placeholder {
+      font-size: 16px;
+    }
+  }
+  .add-contact {
+    flex: 1;
+  }
 }
-.search-icon {
-  left: 20px;
-  position: absolute;
-}
-
-// .search-input {
-//   position: relative;
-// }

@@ -7,17 +7,21 @@ function Index({ showMsg }) {
   return (
     <React.Fragment>
       <div className="chatting">
-        <HeaderProfile></HeaderProfile>
-        <div className={`chatting-content background--quill-gray `}>
+        <div className={`background--quill-gray `}>
           {showMsg ? (
-            <div>Manturp</div>
+            <React.Fragment>
+              <div>
+                <HeaderProfile></HeaderProfile>
+                <div className="chatting-content">Manturp</div>
+                <InputChat></InputChat>
+              </div>
+            </React.Fragment>
           ) : (
-            <div className="flex flex--align-center flex--justify-center height--100">
-              <p>Please select a chat to start messaging</p>
+            <div className=" flex flex--align-center flex--justify-center" style={{ height: '100vh' }}>
+              <div>Please select a chat to start messaging</div>
             </div>
           )}
         </div>
-        <InputChat></InputChat>
       </div>
     </React.Fragment>
   );

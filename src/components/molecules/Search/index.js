@@ -3,14 +3,19 @@ import Input from '@components/atoms/Input';
 import { search } from '@/assets/images';
 
 import './styles.scss';
+import { plusIcon } from '../../../assets/images';
 function index() {
   return (
     <div className="search">
-      <img width="19" height="19" className="search-icon" src={search} alt="search-icon"></img>
-      <Input
-        className="search-input pt-3 pb-3 background--quill-gray pl-5 border-radius--15"
-        placeholder="Type your message..."
-      />
+      <div className="search-content">
+        <div className="search-icon flex flex--align-center">
+          <img width="22.31" height="22.31" src={search} alt="search-icon"></img>
+        </div>
+        <Input className="search-input background--quill-gray border-radius--15" placeholder="Type your message..." />
+      </div>
+      <div className="add-contact">
+        <img src={plusIcon} alt="plus"></img>
+      </div>
     </div>
   );
 }
