@@ -1,8 +1,9 @@
 /* eslint-disable no-sequences */
-import { default as axios } from "../../axiosConfiq";
+import { default as axios } from '../../axiosConfiq';
 // import { BASE_URL } from "../../configs/db";
+import { toastify } from '@/utils';
 
-import io from "socket.io-client";
+import io from 'socket.io-client';
 
 export const login = (body, history, setSocket) => (dispatch) => {
   axios
@@ -10,18 +11,19 @@ export const login = (body, history, setSocket) => (dispatch) => {
     .then((result) => {
       const userData = result.data.result;
 
-      dispatch({ type: "POST_LOGIN", payload: userData });
-      localStorage.setItem("KEY_TOKEN", userData.token);
+      dispatch({ type: 'POST_LOGIN', payload: userData });
+      localStorage.setItem('KEY_TOKEN', userData.token);
       const resultSocket = io(process.env.REACT_APP_API_URL, {
         query: {
-          token: localStorage.getItem("KEY_TOKEN"),
+          token: localStorage.getItem('KEY_TOKEN'),
         },
       });
       setSocket(resultSocket);
-      history.push("/");
+      history.push('/');
     })
     .catch((error) => {
-      return alert(error?.response?.data?.message || "login gagal");
+      const message = error?.response?.data?.message || 'login gagal';
+      toastify(message);
     });
 };
 export const register = (body, history) => (dispatch) => {
@@ -29,14 +31,12 @@ export const register = (body, history) => (dispatch) => {
     .post(`/auth/register/`, body)
     .then((result) => {
       const userData = result?.data?.result;
-      return (
-        alert("Register Success, Check mail to active your account"),
-        dispatch({ type: "POST_REGISTER", payload: userData }),
-        history.push("/login")
-      );
+      const message = result?.data?.message || 'Register Success, Check mail to active your account';
+      return dispatch({ type: 'POST_REGISTER', payload: userData }), toastify(message), history.push('/login');
     })
     .catch((error) => {
-      return alert(error?.response?.data?.message);
+      const message = error?.response?.data?.message || 'Register Gagal';
+      toastify(message);
     });
 };
 
@@ -45,7 +45,7 @@ export const updateProfile = (id, data) => (dispatch) => {
     .put(`/auth/profile/update/${id}`, data)
     .then((result) => {
       const newData = result.data.result;
-      dispatch({ type: "UPDATE_PROFILE", payload: newData });
+      dispatch({ type: 'UPDATE_PROFILE', payload: newData });
     })
     .catch((error) => {
       alert(error.response.data.message);
@@ -56,7 +56,7 @@ export const getUserById = (id) => (dispatch) => {
     .get(`/auth/profile/${id}`)
     .then((result) => {
       const data = result.data.result[0];
-      dispatch({ type: "GET_USER_BY_ID", payload: data });
+      dispatch({ type: 'GET_USER_BY_ID', payload: data });
     })
     .catch((error) => {
       alert(error);

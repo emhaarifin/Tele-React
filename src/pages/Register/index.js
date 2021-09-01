@@ -1,12 +1,14 @@
 import React from 'react';
 import Input from '@components/atoms/Input';
 import Button from '@components/atoms/Button';
-
+import SimpleReactValidator from 'simple-react-validator';
 import { useDispatch } from 'react-redux';
 import { register } from '../../confiq/redux/actions/user';
 import { useHistory } from 'react-router-dom';
 function Index() {
   const router = useHistory();
+
+  const validator = React.useRef(new SimpleReactValidator({ className: 'text--danger small' }));
   const dispatch = useDispatch();
   const handleChange = (e) => {
     e.preventDefault();
@@ -57,25 +59,61 @@ function Index() {
                 <label className="text--lighter-black" htmlFor="name">
                   Name
                 </label>
-                <Input name="fullname" onChange={handleChange} className="pl-0" borderBottom id="name" />
+                <Input
+                  name="fullname"
+                  onChange={handleChange}
+                  onFocus={() => validator.current.showMessageFor('fullname')}
+                  className="pl-0"
+                  borderBottom
+                  id="name"
+                />
+
+                {validator.current.message('fullname', data.fullname, 'required|min:3|max:100')}
               </div>
               <div className="flex mb-3  flex--column">
                 <label className="text--lighter-black" htmlFor="username">
                   Username
                 </label>
-                <Input name="username" onChange={handleChange} className="pl-0" borderBottom id="username" />
+                <Input
+                  name="username"
+                  onChange={handleChange}
+                  onFocus={() => validator.current.showMessageFor('username')}
+                  className="pl-0"
+                  borderBottom
+                  id="username"
+                />
+
+                {validator.current.message('email', data.username, 'required|min:4|max:12')}
               </div>
               <div className="flex mb-3  flex--column">
                 <label className="text--lighter-black" htmlFor="email">
                   Email
                 </label>
-                <Input name="email" onChange={handleChange} className="pl-0" borderBottom id="email" />
+                <Input
+                  name="email"
+                  onChange={handleChange}
+                  onFocus={() => validator.current.showMessageFor('email')}
+                  className="pl-0"
+                  borderBottom
+                  id="email"
+                />
+                {validator.current.message('email', data.email, 'required|email')}
               </div>
               <div className="flex mb-5  flex--column">
                 <label className="text--lighter-black" htmlFor="password">
                   Password
                 </label>
-                <Input name="password" onChange={handleChange} className="pl-0" borderBottom id="password" password />
+                <Input
+                  name="password"
+                  onChange={handleChange}
+                  onFocus={() => validator.current.showMessageFor('password')}
+                  className="pl-0"
+                  borderBottom
+                  id="password"
+                  password
+                />
+
+                {validator.current.message('password', data.password, 'required|min:4|max:15')}
               </div>
               <Button onClick={postRegister} size="large" className="border-radius--70">
                 Register

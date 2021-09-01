@@ -5,3 +5,5 @@ export { default as profileMenu } from './icons/profile-menu.svg';
 export { default as plusIcon } from './icons/+.svg';
 export { default as stickerIcon } from './icons/sticker.svg';
 export { default as cameraIcon } from './icons/camera.svg';
+export { default as settingIcon } from './icons/settings.svg';
+export { default as menuIcon } from './icons/menu.svg';

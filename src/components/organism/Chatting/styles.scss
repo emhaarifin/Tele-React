@@ -2,7 +2,10 @@
   height: 100%;
   &-content {
     height: calc(100vh - 240px);
-    overflow-y: scroll;
+    overflow-y: auto;
+    .scroll-bottom {
+      overflow-y: auto;
+    }
     .content-chat {
       height: auto;
       // width: 100%;

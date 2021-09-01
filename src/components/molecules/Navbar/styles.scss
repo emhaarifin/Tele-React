@@ -10,14 +10,21 @@
 
 .main-navigation {
   display: none;
-  left: 0;
+  left: 30%;
   right: 0;
   background: $dark-blue;
   position: absolute;
+  border-radius: 35px 10px 35px 35px;
   z-index: 1;
+  padding: 1rem;
   li {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    color: $white;
     list-style-type: none;
     cursor: pointer;
+    padding: 0.5rem;
   }
 }
 .my-toggle {

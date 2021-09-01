@@ -45,10 +45,10 @@
     color: $quill-gray;
     border: 1px solid $quill-gray;
     background-color: $dark-blue;
-    position:relative;
+    position: relative;
     &:disabled,
     &[disabled] {
-      color: lighten($color: $light-black, $amount: 16%);
+      color: lighten($color: $white, $amount: 16%);
       border: 1px solid lighten($color: $quill-gray, $amount: 4%);
     }
     // &:hover {
@@ -58,10 +58,10 @@
     // }
     &:after {
       background: #fff;
-      content: "";
+      content: '';
       height: 155px;
       left: -75px;
-      opacity: .2;
+      opacity: 0.2;
       position: absolute;
       top: -50px;
       transform: rotate(35deg);
@@ -86,7 +86,7 @@
     background-color: transparent;
     &:disabled,
     &[disabled] {
-      color: lighten($color: $light-black, $amount: 16%);
+      color: lighten($color: $white, $amount: 16%);
       border: 1px solid lighten($color: $quill-gray, $amount: 4%);
       &:hover {
         background-color: transparent;

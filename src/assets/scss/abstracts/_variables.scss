@@ -1,27 +1,29 @@
-$red: #FF0000;
-$light-red: #FF5555;
+$red: #ff0000;
+$light-red: #ff5555;
+$danger: #dd3444;
 
-$dark-blue: #7E98DF;
-$blue: #2675EC;
-$light-blue: #39B3CA;
-$lighter-blue: #5EB4DD;
+$dark-blue: #7e98df;
+$blue: #2675ec;
+$light-blue: #39b3ca;
+$lighter-blue: #5eb4dd;
 
-$dark-green: #1EB025;
-$green: #40D81A;
+$dark-green: #1eb025;
+$green: #40d81a;
 
 $dark-black: #000000;
 $black: #131313;
 $light-black: #232323;
 $lighter-black: #848484;
 
-$gray: #F6F6F6;
-$quill-gray: #FAFAFA;
-$white: #FFFFFF;
+$gray: #f6f6f6;
+$quill-gray: #fafafa;
+$white: #ffffff;
 
 $inherit: inherit;
 
 $color-list: (
   'red': $red,
+  'danger': $danger,
   'light-red': $light-red,
   'dark-blue': $dark-blue,
   'blue': $blue,
@@ -30,13 +32,13 @@ $color-list: (
   'dark-green': $dark-green,
   'green': $green,
   'dark-black': $dark-black,
-  "black": $black,
+  'black': $black,
   'light-black': $light-black,
   'lighter-black': $lighter-black,
   'gray': $gray,
   'quill-gray': $quill-gray,
   'white': $white,
-  "inherit": $inherit
+  'inherit': $inherit,
 );
 
 $media-sm: 576px;

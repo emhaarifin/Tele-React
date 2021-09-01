@@ -1,12 +1,13 @@
-import React from "react";
-import "./styles.scss";
-import HeaderProfile from "@/components/molecules/HeaderProfile";
-import InputChat from "@/components/molecules/InputChat";
-function Index({ showMsg, setMessage, socket, setMessages, message, messages, friend }) {
+import React from 'react';
+import './styles.scss';
+import HeaderProfile from '@/components/molecules/HeaderProfile';
+import InputChat from '@/components/molecules/InputChat';
+
+function Index({ showMsg, setMessage, messagesEndRef, socket, setMessages, message, messages, friend }) {
   const submitChat = () => {
     if (socket && message && showMsg) {
       socket.emit(
-        "send-message",
+        'send-message',
         {
           receiver_id: friend.id,
           message_body: message,
@@ -15,33 +16,31 @@ function Index({ showMsg, setMessage, socket, setMessages, message, messages, fr
           setMessages((currentValue) => [...currentValue, data]);
         }
       );
-      setMessage("");
+      setMessage('');
     }
   };
 
-  const [isOne, setIsOne] = React.useState(1);
-
   const a = (params) => {
-    let MyChat = "my-chat";
-    if (params % 2 == 0) {
-      MyChat += " my-chat-2";
+    let MyChat = 'my-chat';
+    if (params % 2 === 0) {
+      MyChat += ' my-chat-2';
     } else {
-      MyChat += " my-chat-1";
+      MyChat += ' my-chat-1';
     }
     return MyChat;
   };
   const b = (params) => {
-    let FriendChat = "friend-chat";
-    if (params % 2 == 0) {
-      FriendChat += " friend-chat-2";
+    let FriendChat = 'friend-chat';
+    if (params % 2 === 0) {
+      FriendChat += ' friend-chat-2';
     } else {
-      FriendChat += " friend-chat-1";
+      FriendChat += ' friend-chat-1';
     }
     return FriendChat;
   };
   return (
     <React.Fragment>
-      <div className='chatting'>
+      <div className="chatting">
         <div className={`background--quill-gray `}>
           {showMsg && friend ? (
             <React.Fragment>
@@ -49,28 +48,29 @@ function Index({ showMsg, setMessage, socket, setMessages, message, messages, fr
                 <HeaderProfile
                   avatar={`${process.env.REACT_APP_API_URL}/${friend.avatar}`}
                   fullname={friend.fullname}
-                  status='ehehe'
+                  status="ehehe"
                 ></HeaderProfile>
-                <div className='chatting-content'>
-                  <div className='content-chat'>
-                    {messages.map((item) => {
+                <div className="chatting-content">
+                  <div className="content-chat">
+                    {messages.map((item, index) => {
                       return (
-                        <p className={`chat-item  ${item.sender_id !== friend.id ? a(item.id) : b(item.id)} `}>
+                        <p className={`chat-item  ${item.sender_id !== friend.id ? a(index) : b(index)} `}>
                           {item.message_body}
                         </p>
                       );
                     })}
+                    <div ref={messagesEndRef}></div>
                   </div>
                 </div>
                 <InputChat
                   value={message}
-                  onKeyPress={(e) => e.key === "Enter" && submitChat()}
+                  onKeyPress={(e) => e.key === 'Enter' && submitChat()}
                   onChange={(e) => setMessage(e.target.value)}
                 ></InputChat>
               </div>
             </React.Fragment>
           ) : (
-            <div className=' flex flex--align-center flex--justify-center' style={{ minHeight: "100vh" }}>
+            <div className=" flex flex--align-center flex--justify-center" style={{ minHeight: '100vh' }}>
               <div>Please select a chat to start messaging</div>
             </div>
           )}
