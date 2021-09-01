@@ -1,0 +1,33 @@
+.navigation-menu {
+  overflow: hidden;
+}
+
+.navigation {
+  width: 100%;
+  align-items: baseline;
+  position: relative;
+}
+
+.main-navigation {
+  display: none;
+  left: 0;
+  right: 0;
+  background: $dark-blue;
+  position: absolute;
+  z-index: 1;
+  li {
+    list-style-type: none;
+    cursor: pointer;
+  }
+}
+.my-toggle {
+  cursor: pointer;
+}
+
+#menu-toggle {
+  display: none;
+}
+
+#menu-toggle:checked ~ .main-navigation {
+  display: block;
+}

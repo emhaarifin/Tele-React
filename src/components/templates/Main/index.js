@@ -1,38 +1,94 @@
-import React from 'react';
-import './styles.scss';
-import Chatting from '@components/organism/Chatting';
-import Sidebar from '@components/organism/SidebarLeft';
-function Index(props) {
-  // let [checkOpen, setCheckOpen] = React.useState(true);
-  // const [leftOpen, setLeftOpen] = React.useState('');
-  // const handleShow = () => {
-  //   if (checkOpen) {
-  //     setLeftOpen('sidebar-left--open');
-  //   } else {
-  //     setLeftOpen('sidebar-left--close');
-  //   }
-  // };
+import React from "react";
+import "./styles.scss";
+import Chatting from "@components/organism/Chatting";
+import Sidebar from "@components/organism/SidebarLeft";
+import axios from "@/confiq/axiosConfiq";
+import { useSelector } from "react-redux";
 
+function Index({ socket }) {
+  const [message, setMessage] = React.useState("");
+  const [messages, setMessages] = React.useState([]);
+  const [friends, setFriends] = React.useState([]);
+  const [friend, setFriend] = React.useState(null);
   const [showMsg, setShowMsg] = React.useState(false);
-  // let [chatting, setChatting] = React.useState(false);
-  // const [showChat, setShowChat] = React.useState('');
-  const handleShowMsg = () => {
+  const handleShowMsg = async (params) => {
+    const friendData = await params;
     setShowMsg(true);
-    // if (chatting) {
-    //   console.log(showChat, leftOpen);
-    //   setShowChat('chatting--open');
-    //   setCheckOpen(false);
-    //   setLeftOpen('sidebar-left--close');
-    // } else {
-    //   setShowChat('chatting--close');
-    //   setCheckOpen(true);
-    // }
+    setFriend(friendData);
   };
+  React.useEffect(() => {
+    axios
+      .get("/auth/friends", {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("KEY_TOKEN")}`,
+        },
+      })
+      .then((res) => {
+        const dataUsers = res.data.result;
+        setFriends(dataUsers);
+      });
+  }, []);
+  React.useEffect(() => {
+    if (socket && friend) {
+      socket.off("private-message");
+      socket.on("private-message", (data) => {
+        if (data.sender_id === friend.id) {
+          setMessages((currentValue) => [...currentValue, data]);
+        } else {
+          alert(`${data.receiver_id} -> ${data.message}`);
+        }
+      });
+    }
+  }, [socket, friend]);
+  React.useEffect(() => {
+    if (friend) {
+      axios
+        .get(`/messages/${friend.id}`, {
+          headers: {
+            authorization: `Bearer ${localStorage.getItem("KEY_TOKEN")}`,
+          },
+        })
+        .then((res) => {
+          const resultMsg = res.data.result;
+          setMessages(resultMsg);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [friend]);
 
+  const [profile, setProfile] = React.useState(null);
+  const [handleNav, setHandleNav] = React.useState(false);
+  const { userData } = useSelector((state) => state.user);
+  const handleRender = () => {
+    setProfile(userData);
+    setHandleNav(!handleNav);
+  };
+  const backToChat = () => {
+    setProfile(null);
+    setHandleNav(!handleNav);
+  };
   return (
-    <div className="flex main-template">
-      <Sidebar handleShowMsg={handleShowMsg} />
-      <Chatting showMsg={showMsg} />
+    <div className='flex main-template'>
+      <Sidebar
+        profile={profile}
+        backToChat={backToChat}
+        handleNav={handleNav}
+        handleRender={handleRender}
+        handleShowMsg={handleShowMsg}
+        friends={friends}
+        setFriend={setFriend}
+      />
+      <Chatting
+        showMsg={showMsg}
+        friend={friend}
+        message={message}
+        setMessage={setMessage}
+        setMessages={setMessages}
+        messages={messages}
+        socket={socket}
+      />
     </div>
   );
 }

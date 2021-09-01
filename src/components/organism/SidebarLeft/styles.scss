@@ -3,7 +3,22 @@
   padding-right: 27px;
   padding-bottom: 54px;
   padding-top: 51px;
+  height: 100vh;
   flex: 1;
+  .profile-wrapper {
+    height: 100%;
+    overflow: auto;
+  }
+  .profile--user {
+    width: 60px;
+    height: 60px;
+    img {
+      height: 100%;
+      width: 100%;
+      border-radius: 15px;
+      object-fit: cover;
+    }
+  }
   @include breakpoint-down(sm) {
     &--open {
       background-color: red;

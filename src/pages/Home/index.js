@@ -1,10 +1,10 @@
-import React from 'react';
-import Main from '@/components/templates/Main';
+import React from "react";
+import Main from "@/components/templates/Main";
 
-function index() {
+function index({ socket }) {
   return (
     <div>
-      <Main />
+      <Main socket={socket} />
     </div>
   );
 }

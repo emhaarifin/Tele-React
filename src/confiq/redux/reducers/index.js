@@ -7,11 +7,7 @@ const reducers = combineReducers({
 
 const rootReducer = (state, action) => {
   if (action.type === 'LOGOUT') {
-    localStorage.removeItem('persist:root');
-    localStorage.removeItem('KEY_TOKEN');
-    localStorage.removeItem('id');
-    localStorage.removeItem('name');
-    localStorage.removeItem('roles');
+    localStorage.clear()
     return reducers(undefined, action);
   }
   return reducers(state, action);
