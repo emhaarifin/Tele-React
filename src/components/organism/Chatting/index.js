@@ -3,7 +3,7 @@ import './styles.scss';
 import HeaderProfile from '@/components/molecules/HeaderProfile';
 import InputChat from '@/components/molecules/InputChat';
 
-function Index({ showMsg, setMessage, messagesEndRef, socket, setMessages, message, messages, friend }) {
+function Index({ showMsg, setMessage, socket, setMessages, message, messages, friend }) {
   const submitChat = () => {
     if (socket && message && showMsg) {
       socket.emit(
@@ -38,6 +38,13 @@ function Index({ showMsg, setMessage, messagesEndRef, socket, setMessages, messa
     }
     return FriendChat;
   };
+  const messagesEndRef = React.useRef(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  React.useEffect(scrollToBottom, [messages]);
   return (
     <React.Fragment>
       <div className="chatting">
@@ -52,13 +59,11 @@ function Index({ showMsg, setMessage, messagesEndRef, socket, setMessages, messa
                 ></HeaderProfile>
                 <div className="chatting-content">
                   <div className="content-chat">
-                    {messages.map((item, index) => {
-                      return (
-                        <p className={`chat-item  ${item.sender_id !== friend.id ? a(index) : b(index)} `}>
-                          {item.message_body}
-                        </p>
-                      );
-                    })}
+                    {messages.map((item, index) => (
+                      <p key={item.id} className={`chat-item  ${item.sender_id !== friend.id ? a(index) : b(index)} `}>
+                        {item.message_body}
+                      </p>
+                    ))}
                     <div ref={messagesEndRef}></div>
                   </div>
                 </div>

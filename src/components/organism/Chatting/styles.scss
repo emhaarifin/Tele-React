@@ -3,9 +3,7 @@
   &-content {
     height: calc(100vh - 240px);
     overflow-y: auto;
-    .scroll-bottom {
-      overflow-y: auto;
-    }
+
     .content-chat {
       height: auto;
       // width: 100%;
@@ -14,6 +12,9 @@
       justify-content: flex-end;
       scroll-behavior: smooth;
 
+      .scroll-bottom {
+        overflow-y: auto;
+      }
       .chat-item {
         width: fit-content;
         padding: 17px 33px;

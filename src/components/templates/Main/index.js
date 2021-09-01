@@ -13,13 +13,18 @@ function Index({ socket }) {
   const [showMsg, setShowMsg] = React.useState(false);
   const messagesEndRef = React.useRef(null);
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    messagesEndRef?.current?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'end',
+      inline: 'nearest',
+    });
   };
   const handleShowMsg = async (params) => {
     const friendData = await params;
     setShowMsg(true);
     setFriend(friendData);
   };
+
   React.useEffect(() => {
     axios
       .get('/auth/friends', {
@@ -63,6 +68,7 @@ function Index({ socket }) {
     }
   }, [friend]);
 
+  console.log(messages);
   const [profile, setProfile] = React.useState(null);
   const [handleNav, setHandleNav] = React.useState(false);
   const { userData } = useSelector((state) => state.user);

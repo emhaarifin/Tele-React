@@ -24,6 +24,7 @@ function Router() {
 
   React.useEffect(() => {
     setupSocket();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <BrowserRouter>
