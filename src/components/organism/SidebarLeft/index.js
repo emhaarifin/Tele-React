@@ -14,12 +14,14 @@ function Index({ handleShowMsg, backToChat, friends, handleRender, profile, hand
     bio: '',
     phone_number: '',
   };
+
   const [userProfile, setUserProfile] = React.useState(initialValue);
   const handleChange = (e) => {
     setUserProfile((oldValue) => {
       return { ...oldValue, [e.target.name]: e.target.value };
     });
   };
+
   React.useEffect(() => {
     if (profile) {
       dispatch(getUserById(profile.id));
