@@ -111,6 +111,7 @@ function Index() {
                   borderBottom
                   id="password"
                   password
+                  type="password"
                 />
 
                 {validator.current.message('password', data.password, 'required|min:4|max:15')}

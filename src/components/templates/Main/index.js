@@ -25,7 +25,6 @@ function Index({ socket }) {
     setShowMsg(true);
     setFriend(friendData);
   };
-
   React.useEffect(() => {
     axios
       .get('/auth/friends', {
@@ -51,14 +50,13 @@ function Index({ socket }) {
     }
     scrollToBottom();
   }, [socket, friend]);
-
-  React.useEffect(() => {
-    if (socket) {
-      socket.on('im-on', (data) => {
-        console.log(data, 'tes dataon');
-      });
-    }
-  }, []);
+  // React.useEffect(() => {
+  //   if (socket) {
+  //     socket.on('im-on', (data) => {
+  //       console.log(data, 'tes dataon');
+  //     });
+  //   }
+  // }, []);
 
   React.useEffect(() => {
     if (friend) {
@@ -77,8 +75,6 @@ function Index({ socket }) {
         });
     }
   }, [friend]);
-
-  console.log(messages);
   const [profile, setProfile] = React.useState(null);
   const [handleNav, setHandleNav] = React.useState(false);
   const { userData } = useSelector((state) => state.user);

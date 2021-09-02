@@ -50,12 +50,15 @@
   }
   flex: 4;
   @include breakpoint-down(sm) {
-    display: none;
+    transform: scale(0);
+    -ms-transform: scale(0);
     &--close {
       display: none;
     }
     &--open {
       flex: 1;
+      transform: scale(0);
+      -ms-transform: scale(0);
     }
   }
 }

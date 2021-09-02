@@ -45,6 +45,7 @@ function Index({ setSocket }) {
                   onFocus={() => validator.current.showMessageFor('email')}
                   className="pl-0"
                   borderBottom
+                  type="text"
                   id="email"
                   error={validator.current.message('email', data.email, 'required|email')}
                 />
@@ -60,6 +61,7 @@ function Index({ setSocket }) {
                   className="pl-0"
                   borderBottom
                   id="password"
+                  type="password"
                   onFocus={() => validator.current.showMessageFor('password')}
                   password
                   error={validator.current.message('password', data.password, 'required|password')}
