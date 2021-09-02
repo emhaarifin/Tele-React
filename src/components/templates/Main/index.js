@@ -11,7 +11,7 @@ function Index({ socket }) {
   const [friends, setFriends] = React.useState([]);
   const [friend, setFriend] = React.useState(null);
   const [showMsg, setShowMsg] = React.useState(false);
-  const [online, setOnline] = React.useState();
+  // const [online, setOnline] = React.useState();
   const messagesEndRef = React.useRef(null);
   const scrollToBottom = () => {
     messagesEndRef?.current?.scrollIntoView({
