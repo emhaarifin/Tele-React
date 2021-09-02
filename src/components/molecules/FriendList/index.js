@@ -14,7 +14,7 @@ function Index({ ...props }) {
       </div>
       <div className="friend-list--status">
         <p className="time">{props.timeMsg}</p>
-        <p className="background--dark-blue text--center border-radius--30 text--white p-1">1</p>
+        {/* <p className="background--dark-blue text--center border-radius--30 text--white py-1 px-2">1</p> */}
       </div>
     </div>
   );

@@ -8,12 +8,14 @@ function Index(props) {
         <div className="arrow-left-header">
           <img src={arrowLeft} alt="arrow back"></img>
         </div>
-        <div className="profile-image">
-          <img src={props.avatar} className="border-radius--20" alt="avatar"></img>
-        </div>
-        <div className="profile-information">
-          <p className="text--bold">{props.fullname}</p>
-          <p className="text--dark-blue">{props.status}</p>
+        <div className="flex flex--align-center">
+          <div className="mr-4 profile-image ">
+            <img src={props.avatar} className="border-radius--20" alt="avatar"></img>
+          </div>
+          <div className="ml-1 profile-information">
+            <p className="text--bold mt-2">{props.fullname}</p>
+            <p className="text--dark-blue mt-2">{props.status}</p>
+          </div>
         </div>
       </div>
       <div>

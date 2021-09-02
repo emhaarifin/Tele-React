@@ -10,9 +10,9 @@ export const login = (body, history, setSocket) => (dispatch) => {
     .post(`/auth/login/`, body)
     .then((result) => {
       const userData = result.data.result;
-
       dispatch({ type: 'POST_LOGIN', payload: userData });
       localStorage.setItem('KEY_TOKEN', userData.token);
+      localStorage.setItem('ID_USER', userData.id);
       const resultSocket = io(process.env.REACT_APP_API_URL, {
         query: {
           token: localStorage.getItem('KEY_TOKEN'),
@@ -40,26 +40,40 @@ export const register = (body, history) => (dispatch) => {
     });
 };
 
-export const updateProfile = (id, data) => (dispatch) => {
+export const updateProfile = (data) => (dispatch) => {
+  const newData = new FormData();
+  newData.append('avatar', data.avatar);
+  newData.append('phone_number', data.phone_number);
+  newData.append('bio', data.bio);
   axios
-    .put(`/auth/profile/update/${id}`, data)
+    .put(`/auth/profile/`, newData, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('KEY_TOKEN')}`,
+      },
+    })
     .then((result) => {
-      const newData = result.data.result;
-      dispatch({ type: 'UPDATE_PROFILE', payload: newData });
+      dispatch({ type: 'UPDATE_PROFILE' });
     })
     .catch((error) => {
-      alert(error.response.data.message);
+      const message = error?.response?.data?.message || 'gagal update data';
+      toastify(message);
     });
 };
 export const getUserById = (id) => (dispatch) => {
   axios
-    .get(`/auth/profile/${id}`)
+    .get(`/auth/profile/`, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('KEY_TOKEN')}`,
+      },
+    })
     .then((result) => {
+      console.log(result, 'result dari redux');
       const data = result.data.result[0];
       dispatch({ type: 'GET_USER_BY_ID', payload: data });
     })
     .catch((error) => {
-      alert(error);
+      console.log(error.response, 'ini eor');
+      toastify(error);
     });
 };
 

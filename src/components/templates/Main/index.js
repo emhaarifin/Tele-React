@@ -11,6 +11,7 @@ function Index({ socket }) {
   const [friends, setFriends] = React.useState([]);
   const [friend, setFriend] = React.useState(null);
   const [showMsg, setShowMsg] = React.useState(false);
+  const [online, setOnline] = React.useState();
   const messagesEndRef = React.useRef(null);
   const scrollToBottom = () => {
     messagesEndRef?.current?.scrollIntoView({
@@ -44,12 +45,21 @@ function Index({ socket }) {
         if (data.sender_id === friend.id) {
           setMessages((currentValue) => [...currentValue, data]);
         } else {
-          toastify(`Pesan dari ${data.senderName} -> ${data.message_body}`);
+          toastify(`Ada pesan dari ${data.senderName} -> ${data.message_body}`);
         }
       });
     }
     scrollToBottom();
   }, [socket, friend]);
+
+  React.useEffect(() => {
+    if (socket) {
+      socket.on('im-on', (data) => {
+        console.log(data, 'tes dataon');
+      });
+    }
+  }, []);
+
   React.useEffect(() => {
     if (friend) {
       axios
@@ -80,6 +90,7 @@ function Index({ socket }) {
     setProfile(null);
     setHandleNav(!handleNav);
   };
+
   return (
     <div className="flex main-template">
       <Sidebar

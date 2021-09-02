@@ -13,7 +13,7 @@ function Router() {
   const setupSocket = () => {
     const token = localStorage.getItem('KEY_TOKEN');
     if (token && !socket) {
-      const resultSocket = io('http://localhost:4000/', {
+      const resultSocket = io(`${process.env.REACT_APP_API_URL}`, {
         query: {
           token: token,
         },

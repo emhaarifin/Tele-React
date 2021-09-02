@@ -55,7 +55,7 @@ function Index({ showMsg, setMessage, socket, setMessages, message, messages, fr
                 <HeaderProfile
                   avatar={`${process.env.REACT_APP_API_URL}/${friend.avatar}`}
                   fullname={friend.fullname}
-                  status="ehehe"
+                  status={friend.socket_id !== '' ? 'Online' : 'Offline'}
                 ></HeaderProfile>
                 <div className="chatting-content">
                   <div className="content-chat">
