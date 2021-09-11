@@ -2,17 +2,28 @@
   height: 120px;
   padding: 0 52px;
 
+  @include breakpoint-down(md) {
+    padding: 0 10px;
+  }
+
   &--content {
     position: relative;
   }
   &--chat {
     padding: 20px 30px;
+
+    @include breakpoint-down(md) {
+      padding: 20px 10px;
+    }
   }
   &--icon {
     top: 0;
     right: 30px;
     bottom: 0;
     gap: 23px;
+    @include breakpoint-down(md) {
+      gap: 8px;
+    }
     position: absolute;
   }
 }

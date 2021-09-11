@@ -7,7 +7,7 @@ import { updateProfile, getUserById } from '@/confiq/redux/actions/user';
 import { useDispatch } from 'react-redux';
 import Button from '@/components/atoms/Button';
 import Input from '@/components/atoms/Input';
-function Index({ handleShowMsg, backToChat, friends, handleRender, profile, handleNav }) {
+function Index({ handleShowMsg, backToChat, friends, handleRender, profile, handleNav, isShow }) {
   const dispatch = useDispatch();
   const initialValue = {
     avatar: '',
@@ -39,7 +39,7 @@ function Index({ handleShowMsg, backToChat, friends, handleRender, profile, hand
     dispatch(updateProfile(userProfile));
   };
   return (
-    <div className={`sidebar-left background--white`}>
+    <div className={`sidebar-left background--white ${isShow ? '' : 'closed'}`}>
       <Navbar backToChat={backToChat} handleNav={handleNav} username={profile?.username} handleRender={handleRender} />
       {profile ? (
         <>

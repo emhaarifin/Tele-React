@@ -1,5 +1,10 @@
 .chatting {
   height: 100%;
+
+  @include breakpoint-down(md) {
+    display: none;
+  }
+
   &-content {
     height: calc(100vh - 240px);
     overflow-y: auto;
@@ -47,18 +52,30 @@
     }
     // background: rgb(240, 169, 169);
     padding: 25px 50px 0px 54px;
+    @include breakpoint-down(md) {
+      padding: 18px 14px 0px 14px;
+    }
   }
   flex: 4;
-  @include breakpoint-down(sm) {
-    transform: scale(0);
-    -ms-transform: scale(0);
-    &--close {
-      display: none;
-    }
-    &--open {
-      flex: 1;
-      transform: scale(0);
-      -ms-transform: scale(0);
-    }
+  // @include breakpoint-down(sm) {
+  //   transform: scale(0);
+  //   -ms-transform: scale(0);
+  //   &--close {
+  //     display: none;
+  //   }
+  //   &--open {
+  //     flex: 1;
+  //     transform: scale(0);
+  //     -ms-transform: scale(0);
+  //   }
+  // }
+}
+// display: none;
+// flex: 0;
+.open {
+  @include breakpoint-down(md) {
+    display: block;
+    // display: flex;
+    // flex: 1;
   }
 }

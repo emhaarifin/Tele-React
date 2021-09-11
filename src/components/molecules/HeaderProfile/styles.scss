@@ -1,5 +1,8 @@
 .header-profile {
   padding: 0 53px;
+  @include breakpoint-down(md) {
+    padding: 0 16px;
+  }
   height: 120px;
   max-height: 120px;
   p {
@@ -8,6 +11,9 @@
   }
   .arrow-left-header {
     display: none;
+    @include breakpoint-down(md) {
+      display: block;
+    }
   }
   &--content {
     height: 100%;

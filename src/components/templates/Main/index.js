@@ -11,6 +11,7 @@ function Index({ socket }) {
   const [friends, setFriends] = React.useState([]);
   const [friend, setFriend] = React.useState(null);
   const [showMsg, setShowMsg] = React.useState(false);
+  const [isShow, setIsShow] = React.useState(true);
   // const [online, setOnline] = React.useState();
   const messagesEndRef = React.useRef(null);
   const scrollToBottom = () => {
@@ -24,6 +25,7 @@ function Index({ socket }) {
     const friendData = await params;
     setShowMsg(true);
     setFriend(friendData);
+    setIsShow(!isShow);
   };
   React.useEffect(() => {
     axios
@@ -96,11 +98,14 @@ function Index({ socket }) {
         handleRender={handleRender}
         handleShowMsg={handleShowMsg}
         friends={friends}
+        isShow={isShow}
         setFriend={setFriend}
       />
       <Chatting
         showMsg={showMsg}
         friend={friend}
+        isShow={isShow}
+        setIsShow={setIsShow}
         messagesEndRef={messagesEndRef}
         message={message}
         setMessage={setMessage}

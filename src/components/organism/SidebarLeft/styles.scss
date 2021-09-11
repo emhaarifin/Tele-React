@@ -5,6 +5,7 @@
   padding-top: 51px;
   height: 100vh;
   flex: 1;
+
   .profile-wrapper {
     height: 100%;
     overflow: auto;
@@ -19,13 +20,10 @@
       object-fit: cover;
     }
   }
-  @include breakpoint-down(sm) {
-    &--open {
-      background-color: red;
-      flex: 1;
-    }
-    &--close {
-      display: none;
-    }
+}
+
+.closed {
+  @include breakpoint-down(md) {
+    display: none;
   }
 }

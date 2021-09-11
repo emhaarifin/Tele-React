@@ -3,7 +3,7 @@ import './styles.scss';
 import HeaderProfile from '@/components/molecules/HeaderProfile';
 import InputChat from '@/components/molecules/InputChat';
 
-function Index({ showMsg, setMessage, socket, setMessages, message, messages, friend }) {
+function Index({ showMsg, setMessage, socket, setMessages, message, messages, friend, isShow, setIsShow }) {
   const submitChat = () => {
     if (socket && message && showMsg) {
       socket.emit(
@@ -47,12 +47,14 @@ function Index({ showMsg, setMessage, socket, setMessages, message, messages, fr
   React.useEffect(scrollToBottom, [messages]);
   return (
     <React.Fragment>
-      <div className="chatting">
+      <div className={`chatting ${isShow ? '' : 'open'}`}>
         <div className={`background--quill-gray `}>
           {showMsg && friend ? (
             <React.Fragment>
               <div>
                 <HeaderProfile
+                  setIsShow={setIsShow}
+                  setShow={isShow}
                   avatar={`${process.env.REACT_APP_API_URL}/${friend.avatar}`}
                   fullname={friend.fullname}
                   status={friend.socket_id !== '' ? 'Online' : 'Offline'}
