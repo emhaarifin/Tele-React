@@ -12,7 +12,7 @@ function Index({ socket }) {
   const [friend, setFriend] = React.useState(null);
   const [showMsg, setShowMsg] = React.useState(false);
   const [isShow, setIsShow] = React.useState(true);
-  // const [online, setOnline] = React.useState();
+
   const messagesEndRef = React.useRef(null);
   const scrollToBottom = () => {
     messagesEndRef?.current?.scrollIntoView({
@@ -52,13 +52,6 @@ function Index({ socket }) {
     }
     scrollToBottom();
   }, [socket, friend]);
-  // React.useEffect(() => {
-  //   if (socket) {
-  //     socket.on('im-on', (data) => {
-  //       console.log(data, 'tes dataon');
-  //     });
-  //   }
-  // }, []);
 
   React.useEffect(() => {
     if (friend) {
