@@ -3,7 +3,20 @@ import './styles.scss';
 import HeaderProfile from '@/components/molecules/HeaderProfile';
 import InputChat from '@/components/molecules/InputChat';
 
-function Index({ showMsg, setMessage, socket, setMessages, message, messages, friend, isShow, setIsShow }) {
+function Index({
+  showMsg,
+  setMessage,
+  handleShowProfileFriend,
+  socket,
+  setMessages,
+  message,
+  messages,
+  friend,
+  isShow,
+  setIsShow,
+  showFriendProfile,
+  deleteMessage,
+}) {
   const submitChat = () => {
     if (socket && message && showMsg) {
       socket.emit(
@@ -47,17 +60,19 @@ function Index({ showMsg, setMessage, socket, setMessages, message, messages, fr
   React.useEffect(scrollToBottom, [messages]);
   return (
     <React.Fragment>
-      <div className={`chatting ${isShow ? '' : 'open'}`}>
-        <div className={`background--quill-gray `}>
+      <div className={`chatting ${isShow ? '' : 'open'} ${showFriendProfile ? '' : 'chatting-room__closed'}`}>
+        <div className={`background--quill-gray height--100`}>
           {showMsg && friend ? (
             <React.Fragment>
               <div>
                 <HeaderProfile
                   setIsShow={setIsShow}
                   setShow={isShow}
-                  avatar={`${process.env.REACT_APP_API_URL}/${friend.avatar}`}
+                  handleShowProfileFriend={handleShowProfileFriend}
+                  avatar={friend.avatar}
                   fullname={friend.fullname}
                   status={friend.socket_id !== '' ? 'Online' : 'Offline'}
+                  deleteMessage={deleteMessage}
                 ></HeaderProfile>
                 <div className="chatting-content">
                   <div className="content-chat">
@@ -77,7 +92,7 @@ function Index({ showMsg, setMessage, socket, setMessages, message, messages, fr
               </div>
             </React.Fragment>
           ) : (
-            <div className=" flex flex--align-center flex--justify-center" style={{ minHeight: '100vh' }}>
+            <div className=" flex flex--align-center flex--justify-center height--100">
               <div>Please select a chat to start messaging</div>
             </div>
           )}

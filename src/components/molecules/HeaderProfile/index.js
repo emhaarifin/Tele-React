@@ -1,7 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { arrowLeft, profileMenu } from '@/assets/images';
 import './styles.scss';
-function Index({ setIsShow, isShow, ...props }) {
+function Index({ setIsShow, isShow, handleShowProfileFriend, deleteMessage, ...props }) {
+  function dropDownUser() {
+    document.getElementById('myDropdown').classList.toggle('show');
+  }
+  useEffect(() => {
+    window.onclick = function (event) {
+      if (!event.target.matches('.header__profile-menu')) {
+        var dropdowns = document.getElementsByClassName('dropdown-content');
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+          }
+        }
+      }
+    };
+  }, []);
   return (
     <div className="header-profile background--white flex flex--align-center flex--justify-space-between">
       <div className="flex header-profile--content flex--align-center">
@@ -18,8 +35,24 @@ function Index({ setIsShow, isShow, ...props }) {
           </div>
         </div>
       </div>
-      <div>
-        <img src={profileMenu} alt="icon menu profile"></img>
+      <div className="position--relative">
+        <img
+          src={profileMenu}
+          className="header__profile-menu cursor--pointer"
+          onClick={dropDownUser}
+          alt="icon menu profile"
+        ></img>
+        <div id="myDropdown" className="dropdown-content">
+          <div className="dropdown-item">
+            <li onClick={handleShowProfileFriend} className="item-nav cursor--pointer">
+              Friend profile
+            </li>
+            <br />
+            <li onClick={deleteMessage} className="item-nav cursor--pointer">
+              Delete Message
+            </li>
+          </div>
+        </div>
       </div>
     </div>
   );

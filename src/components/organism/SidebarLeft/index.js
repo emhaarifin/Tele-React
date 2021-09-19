@@ -10,9 +10,11 @@ import Input from '@/components/atoms/Input';
 function Index({ handleShowMsg, backToChat, friends, handleRender, profile, handleNav, isShow }) {
   const dispatch = useDispatch();
   const initialValue = {
-    avatar: '',
+    avatar: null,
     bio: '',
     phone_number: '',
+    defaultImg: false,
+    imagePreview: null,
   };
 
   const [userProfile, setUserProfile] = React.useState(initialValue);
@@ -21,12 +23,20 @@ function Index({ handleShowMsg, backToChat, friends, handleRender, profile, hand
       return { ...oldValue, [e.target.name]: e.target.value };
     });
   };
+  const handleInputFile = (e) => {
+    setUserProfile({
+      ...userProfile,
+      defaultImg: true,
+      avatar: e.target.files[0],
+      imagePreview: URL.createObjectURL(e.target.files[0]),
+    });
+  };
 
   React.useEffect(() => {
     if (profile) {
       dispatch(getUserById(profile.id));
       setUserProfile({
-        avatar: `${process.env.REACT_APP_API_URL}/${profile.avatar}`,
+        avatar: profile.avatar,
         bio: profile.bio,
         phone_number: profile.phone_number,
       });
@@ -47,7 +57,19 @@ function Index({ handleShowMsg, backToChat, friends, handleRender, profile, hand
             <form onSubmit={handleSubmit} encType="multipart/form-data">
               <div className="flex flex--column flex--align-center">
                 <div className="profile--user">
-                  <img src={`${process.env.REACT_APP_API_URL}/${profile.avatar}`} alt="avatar user"></img>
+                  <label htmlFor="profile-user__avatar">
+                    <img
+                      src={
+                        userProfile.defaultImg
+                          ? userProfile.imagePreview
+                          : profile.avatar
+                          ? profile.avatar
+                          : profile.avatar
+                      }
+                      alt="avatar user"
+                    ></img>
+                    <input type="file" id="profile-user__avatar" name="avatar" onChange={handleInputFile}></input>
+                  </label>
                 </div>
                 <h3 className="mt-3 mb-2">{profile.fullname}</h3>
                 <p className="text--lighter-black p-0 m-0">@{profile.username}</p>
@@ -67,7 +89,7 @@ function Index({ handleShowMsg, backToChat, friends, handleRender, profile, hand
                 <Input name="bio" onChange={handleChange} placeholder="Bio" className="text--lighter-black"></Input>
               </div>
               <Button type="sumbit" className="mt-4">
-                Edit data
+                Edit profile
               </Button>
             </form>
           </div>
@@ -75,17 +97,19 @@ function Index({ handleShowMsg, backToChat, friends, handleRender, profile, hand
       ) : (
         <>
           <Search />
-          {friends &&
-            friends.map((friend) => {
-              return (
-                <FriendList
-                  key={friend.id}
-                  avatar={`${process.env.REACT_APP_API_URL}/${friend.avatar}`}
-                  name={friend.fullname}
-                  onClick={() => handleShowMsg(friend)}
-                />
-              );
-            })}
+          <div className="friends-wrapper">
+            {friends &&
+              friends.map((friend) => {
+                return (
+                  <FriendList
+                    key={friend.id}
+                    avatar={friend.avatar}
+                    name={friend.fullname}
+                    onClick={() => handleShowMsg(friend)}
+                  />
+                );
+              })}
+          </div>
         </>
       )}
     </div>

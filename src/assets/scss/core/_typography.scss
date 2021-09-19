@@ -11,13 +11,9 @@
   --text-sm: calc(1em / var(--text-scale-ratio));
   --text-md: calc(1em * var(--text-scale-ratio));
   --text-lg: calc(1em * var(--text-scale-ratio) * var(--text-scale-ratio));
-  --text-xl: calc(
-    1em * var(--text-scale-ratio) * var(--text-scale-ratio) *
-      var(--text-scale-ratio)
-  );
+  --text-xl: calc(1em * var(--text-scale-ratio) * var(--text-scale-ratio) * var(--text-scale-ratio));
   --text-xxl: calc(
-    1em * var(--text-scale-ratio) * var(--text-scale-ratio) *
-      var(--text-scale-ratio) * var(--text-scale-ratio)
+    1em * var(--text-scale-ratio) * var(--text-scale-ratio) * var(--text-scale-ratio) * var(--text-scale-ratio)
   );
 }
 
@@ -75,7 +71,7 @@ p {
   }
 
   &--bold {
-    font-weight: 500;
+    font-weight: 700;
   }
 
   &--underline {

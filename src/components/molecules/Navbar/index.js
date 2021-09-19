@@ -3,7 +3,7 @@ import React from 'react';
 import { arrowLeft } from '@/assets/images';
 import './styles.scss';
 import { useDispatch } from 'react-redux';
-import { menuIcon, settingIcon } from '../../../assets/images';
+import { menuIcon } from '../../../assets/images';
 import { useHistory } from 'react-router-dom';
 function Index({ handleRender, backToChat, handleNav, username }) {
   const dispatch = useDispatch();
@@ -33,10 +33,10 @@ function Index({ handleRender, backToChat, handleNav, username }) {
             </label>
             <ul className="main-navigation">
               <li onClick={() => handleRender()} className="item-nav">
-                <img src={settingIcon} alt="setting"></img>Setting
+                My Profile
               </li>
               <li onClick={() => dispatch({ type: 'LOGOUT' }, history.push('/'))} className="item-nav">
-                <img src={settingIcon} alt="setting"></img>Logout
+                Logout
               </li>
             </ul>
           </div>

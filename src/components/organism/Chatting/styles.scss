@@ -1,6 +1,4 @@
 .chatting {
-  height: 100%;
-
   @include breakpoint-down(md) {
     display: none;
   }
@@ -76,7 +74,11 @@
 .open {
   @include breakpoint-down(md) {
     display: block;
-    // display: flex;
-    // flex: 1;
+  }
+}
+
+.chatting-room__closed {
+  @include breakpoint-down(md) {
+    display: none;
   }
 }

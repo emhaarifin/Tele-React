@@ -1,4 +1,4 @@
-.sidebar-left {
+.sidebar-right {
   padding-left: 30px;
   padding-right: 27px;
   padding-bottom: 54px;
@@ -21,28 +21,12 @@
       object-fit: cover;
     }
   }
-}
-
-.friends-wrapper {
-  height: calc(100vh - 138px);
-  overflow: auto;
-}
-.closed {
-  @include breakpoint-down(md) {
-    display: none;
+  .p-reset {
+    margin: 0;
+    padding: 0;
   }
 }
 
-.profile--user {
-  position: relative;
-  label {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    top: 0;
-    input {
-      display: none;
-    }
-  }
+.profile-friend__closed {
+  display: none;
 }

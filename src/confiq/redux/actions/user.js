@@ -53,6 +53,7 @@ export const updateProfile = (data) => (dispatch) => {
     })
     .then((result) => {
       dispatch({ type: 'UPDATE_PROFILE' });
+      toastify('Sukses update profile');
     })
     .catch((error) => {
       const message = error?.response?.data?.message || 'gagal update data';
