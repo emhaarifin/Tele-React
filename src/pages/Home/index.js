@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react';
 import Chatting from '@components/organism/Chatting';
 import Sidebar from '@components/organism/SidebarLeft';
