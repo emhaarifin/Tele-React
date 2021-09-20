@@ -3,9 +3,11 @@ import Chatting from '@components/organism/Chatting';
 import Sidebar from '@components/organism/SidebarLeft';
 import FriendProfile from '@components/organism/FriendProfile';
 import axios from '@/confiq/axiosConfiq';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { getUserById } from '../../confiq/redux/actions/user';
 import { toastify } from '@/utils';
 function Index({ socket }) {
+  const dispatch = useDispatch();
   const [message, setMessage] = React.useState('');
   const [messages, setMessages] = React.useState([]);
   const [friends, setFriends] = React.useState([]);
@@ -98,6 +100,9 @@ function Index({ socket }) {
   const [profile, setProfile] = React.useState(null);
   const [handleNav, setHandleNav] = React.useState(false);
   const { userData } = useSelector((state) => state.user);
+  React.useEffect(() => {
+    dispatch(getUserById());
+  }, [profile]);
   const handleRender = () => {
     setProfile(userData);
     setHandleNav(!handleNav);

@@ -52,6 +52,7 @@ export const updateProfile = (data) => (dispatch) => {
       },
     })
     .then((result) => {
+      console.log(result, 'result update');
       dispatch({ type: 'UPDATE_PROFILE' });
       toastify('Sukses update profile');
     })

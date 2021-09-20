@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './styles.scss';
 import FriendList from '@/components/molecules/FriendList';
 import Search from '@/components/molecules/Search';
 import Navbar from '@/components/molecules/Navbar';
 import { updateProfile, getUserById } from '@/confiq/redux/actions/user';
-import { useDispatch } from 'react-redux';
-import Button from '@/components/atoms/Button';
+import { useDispatch, useSelector } from 'react-redux';
 import Input from '@/components/atoms/Input';
 function Index({ handleShowMsg, backToChat, friends, handleRender, profile, handleNav, isShow }) {
+  const { userData } = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  const [bio, setBio] = useState(false);
+  const [phone, setPhone] = useState(false);
+  const [reset, setReset] = useState(false);
   const initialValue = {
     avatar: null,
     bio: '',
@@ -33,25 +36,32 @@ function Index({ handleShowMsg, backToChat, friends, handleRender, profile, hand
   };
 
   React.useEffect(() => {
-    if (profile) {
-      dispatch(getUserById(profile.id));
-      setUserProfile({
-        avatar: profile.avatar,
-        bio: profile.bio,
-        phone_number: profile.phone_number,
-      });
+    async function getDatauser() {
+      if (userData) {
+        await dispatch(getUserById(userData.id));
+        await setUserProfile(userData);
+        console.log(userProfile);
+      }
     }
+    getDatauser();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [profile]);
+  }, [profile, reset]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e, params) => {
     e.preventDefault();
-    dispatch(updateProfile(userProfile));
+    await dispatch(updateProfile(userProfile));
+    (await params) === 'phone' ? setPhone(!phone) : params === 'bio' ? setBio(!bio) : console.log('no target');
+    setReset(!reset);
   };
   return (
     <div className={`sidebar-left background--white ${isShow ? '' : 'closed'}`}>
-      <Navbar backToChat={backToChat} handleNav={handleNav} username={profile?.username} handleRender={handleRender} />
-      {profile ? (
+      <Navbar
+        backToChat={backToChat}
+        handleNav={handleNav}
+        username={userProfile?.username}
+        handleRender={handleRender}
+      />
+      {profile && userProfile ? (
         <>
           <div className="profile-wrapper">
             <form onSubmit={handleSubmit} encType="multipart/form-data">
@@ -62,35 +72,60 @@ function Index({ handleShowMsg, backToChat, friends, handleRender, profile, hand
                       src={
                         userProfile.defaultImg
                           ? userProfile.imagePreview
-                          : profile.avatar
-                          ? profile.avatar
-                          : profile.avatar
+                          : userProfile.avatar
+                          ? userProfile.avatar
+                          : userProfile.avatar
                       }
                       alt="avatar user"
                     ></img>
                     <input type="file" id="profile-user__avatar" name="avatar" onChange={handleInputFile}></input>
                   </label>
                 </div>
-                <h3 className="mt-3 mb-2">{profile.fullname}</h3>
-                <p className="text--lighter-black p-0 m-0">@{profile.username}</p>
+                <h3 className="mt-3 mb-2">{userProfile.fullname}</h3>
+                <p className="text--lighter-black p-0 m-0">@{userProfile.username}</p>
               </div>
               <div>
                 <h4>Account</h4>
-                <p>{profile.phone_number}</p>
-                <Input name="phone_number" onChange={handleChange} className="pl-0"></Input>
-                <p className="text--dark-blue cursor--pointer">Tap to change phone number</p>
+                {phone ? (
+                  <Input
+                    name="phone_number"
+                    onChange={handleChange}
+                    placeholder="change phone number"
+                    onKeyPress={(e) => e.key === 'Enter' && handleSubmit(e, 'phone')}
+                    className="pl-0"
+                  ></Input>
+                ) : (
+                  <>
+                    <p>{userProfile.phone_number}</p>
+                    <p className="text--dark-blue cursor--pointer" onClick={() => setPhone(!phone)}>
+                      Tap to change phone number
+                    </p>
+                  </>
+                )}
               </div>
               <div>
-                <h4>@{profile.username}</h4>
+                <h4>@{userProfile.username}</h4>
                 <p className="text--lighter-black">Username</p>
               </div>
               <div>
-                <h4>{profile.bio}</h4>
-                <Input name="bio" onChange={handleChange} placeholder="Bio" className="text--lighter-black"></Input>
+                {bio ? (
+                  <Input
+                    name="bio"
+                    onChange={handleChange}
+                    onKeyPress={(e) => e.key === 'Enter' && handleSubmit(e, 'bio')}
+                    placeholder="Change bio"
+                    className="text--lighter-black"
+                  ></Input>
+                ) : (
+                  <>
+                    {console.log('l', userProfile.bio)}
+                    <h4>{userProfile.bio}</h4>
+                    <p className="text--dark-blue cursor--pointer" onClick={() => setBio(!bio)}>
+                      Tap to change bio
+                    </p>
+                  </>
+                )}
               </div>
-              <Button type="sumbit" className="mt-4">
-                Edit profile
-              </Button>
             </form>
           </div>
         </>
