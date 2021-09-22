@@ -1,70 +1,109 @@
-# Getting Started with Create React App
+<h1 align="center">Telegram Clone</h1>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p align="center">
+    <a href="https://my-tele.netlify.app/">View Demo</a>
+    ·
+    <a href="https://github.com/emhaarifin/Tele-React/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/emhaarifin/Tele-React/pulls">Request Feature</a>
+</p>
+<br/>
 
-## Available Scripts
+<!-- TABLE OF CONTENTS -->
+<details open="open">
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+        <ol>
+            <li>
+                <a href="#build-with">Build With</a>
+            </li>
+        </ol>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ol>
+        <li>
+          <a href="#installation">Installation</a>
+        </li>
+        <li>
+          <a href="#prerequisites">Prerequisites</a>
+        </li>
+        <li>
+          <a href="#related-project">Related Project</a>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#screenshots">Screenshots</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ol>
+</details>
 
-In the project directory, you can run:
+<!-- ABOUT THE PROJECT -->
 
-### `yarn start`
+## About The Project
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<b>Telegram Clone</b>, get a simple messaging app for free.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Build With
+* [JavaScript](https://www.javascript.com/)
+* [Next Js](https://nextjs.org/)
+* [Redux](https://redux.js.org/)
+* [Styled Components](https://styled-components.com/)
+* [Socket.io](https://socket.io/)
 
-### `yarn test`
+## Getting Started
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Prerequisites
 
-### `yarn build`
+This is an example of how to list things you need to use the software and how to install them.
+* [Node Js](https://nodejs.org/en/download/)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Installation
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. Clone These 2 Repos (Backend and Frontend)
+```sh
+git clone https://github.com/emhaarifin/Tele-React.git
+```
+2. Go To Folder Repo
+```sh
+cd Tele-React
+```
+3. Install Module
+```sh
+npm install
+```
+4. Add .env file at root folder project, and add following
+```sh
+REACT_APP_API_URL = [BACKEND_API]
+```
+5. Start website
+```sh
+npm start
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Related Project
+* [`Frontend-Tele`](https://github.com/emhaarifin/Tele-React)
+* [`Backend-Tele`](https://github.com/emhaarifin/Tele-Express/)
 
-### `yarn eject`
+## Screenshots
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+<div align="center">
+    <img width="350" src="https://res.cloudinary.com/emhaarifin/image/upload/v1632168248/Screen_Shot_2021-09-21_at_00.35.19_rnn4vt.png">   
+    <img width="350" src="https://res.cloudinary.com/emhaarifin/image/upload/v1632168248/Screen_Shot_2021-09-21_at_00.35.05_dks6mb.png">
+</div>
+<div align="center">
+    <img width="350" src="https://res.cloudinary.com/emhaarifin/image/upload/v1632168250/Screen_Shot_2021-09-21_at_00.34.28_g9xyaq.png">   
+    <img width="350" src="https://res.cloudinary.com/emhaarifin/image/upload/v1632168249/Screen_Shot_2021-09-21_at_00.34.51_xoaocf.png">
+</div>
+<div align="center">
+    <img width="350" src="https://res.cloudinary.com/emhaarifin/image/upload/v1632168251/Screen_Shot_2021-09-21_at_00.35.12_fpofp3.png">   
+<!--     <img width="350" src=""> -->
+</div>
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Contact
+My Email : 101muhammadarifin@gmail.com
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Project Link: [https://github.com/emhaarifin/Tele-React](https://github.com/emhaarifin/Tele-React)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
