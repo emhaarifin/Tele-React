@@ -16,6 +16,7 @@ function Index({ socket }) {
   const [showMsg, setShowMsg] = React.useState(false);
   const [isShow, setIsShow] = React.useState(true);
   const [showFriendProfile, setShowFriendProfile] = React.useState(true);
+  const [search, setSearch] = React.useState('');
   const messagesEndRef = React.useRef(null);
   const scrollToBottom = () => {
     messagesEndRef?.current?.scrollIntoView({
@@ -38,7 +39,7 @@ function Index({ socket }) {
 
   React.useEffect(() => {
     axios
-      .get('/auth/friends', {
+      .get(`/auth/friends?search=${search}`, {
         headers: {
           authorization: `Bearer ${localStorage.getItem('KEY_TOKEN')}`,
         },
@@ -47,7 +48,7 @@ function Index({ socket }) {
         const dataUsers = res.data.result;
         setFriends(dataUsers);
       });
-  }, []);
+  }, [search]);
   React.useEffect(() => {
     if (socket && friend) {
       socket.off('private-message');
@@ -122,6 +123,7 @@ function Index({ socket }) {
         handleRender={handleRender}
         handleShowMsg={handleShowMsg}
         friends={friends}
+        setSearch={setSearch}
         isShow={isShow}
         setFriend={setFriend}
       />

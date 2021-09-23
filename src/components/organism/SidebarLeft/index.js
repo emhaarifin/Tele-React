@@ -6,7 +6,7 @@ import Navbar from '@/components/molecules/Navbar';
 import { updateProfile, getUserById } from '@/confiq/redux/actions/user';
 import { useDispatch, useSelector } from 'react-redux';
 import Input from '@/components/atoms/Input';
-function Index({ handleShowMsg, backToChat, friends, handleRender, profile, handleNav, isShow }) {
+function Index({ handleShowMsg, backToChat, friends, setSearch, handleRender, profile, handleNav, isShow }) {
   const { userData } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const [bio, setBio] = useState(false);
@@ -53,6 +53,7 @@ function Index({ handleShowMsg, backToChat, friends, handleRender, profile, hand
     (await params) === 'phone' ? setPhone(!phone) : params === 'bio' ? setBio(!bio) : console.log('no target');
     setReset(!reset);
   };
+
   return (
     <div className={`sidebar-left background--white ${isShow ? '' : 'closed'}`}>
       <Navbar
@@ -131,10 +132,10 @@ function Index({ handleShowMsg, backToChat, friends, handleRender, profile, hand
         </>
       ) : (
         <>
-          <Search />
+          <Search onChange={(e) => setSearch(e.target.value)} />
           <div className="friends-wrapper">
-            {friends &&
-              friends.map((friend) => {
+            {friends.length ? (
+              friends?.map((friend) => {
                 return (
                   <FriendList
                     key={friend.id}
@@ -143,7 +144,10 @@ function Index({ handleShowMsg, backToChat, friends, handleRender, profile, hand
                     onClick={() => handleShowMsg(friend)}
                   />
                 );
-              })}
+              })
+            ) : (
+              <p>Nama tidak ada</p>
+            )}
           </div>
         </>
       )}
