@@ -68,8 +68,12 @@ function Index({ setSocket }) {
                 />
                 {validator.current.message('password', data.password, 'required|password')}
               </div>
-              <div className="text--right mt-4 mb-4">
-                <Link className="text--dark-blue" to="/forgot-password">
+              <div className="text--right mt-4 mb-4 ">
+                <Link
+                  className="text--dark-blue href-forgot-password"
+                  onClick={(e) => e.preventDefault()}
+                  to="/forgot-password"
+                >
                   Forgot password?
                 </Link>
               </div>
@@ -88,7 +92,7 @@ function Index({ setSocket }) {
               <span className="text--lighter-black">Login with</span>
               <hr className="flex__item--5"></hr>
             </div>
-            <Button size="large" className="border-radius--70 mb-3" color="white" block>
+            <Button disabled size="large" className="border-radius--70 mb-3" color="white" block>
               Google
             </Button>
             <p className="text--center mt-4">

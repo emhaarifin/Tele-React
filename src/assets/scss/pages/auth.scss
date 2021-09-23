@@ -2,7 +2,6 @@
   max-width: 500px;
   height: 100vh;
   &__form {
-    
     @include breakpoint-up(sm) {
       padding-top: 42px;
       padding-left: 70px;
@@ -15,5 +14,8 @@
       padding-right: 10px;
       padding-bottom: 43px;
     }
+  }
+  .href-forgot-password {
+    cursor: not-allowed;
   }
 }
