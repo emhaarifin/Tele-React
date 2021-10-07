@@ -125,7 +125,7 @@ function Index() {
               <span className="text--lighter-black">Register with</span>
               <hr className="flex__item--5"></hr>
             </div>
-            <Button size="large" className="border-radius--70 mb-3" color="white" block>
+            <Button disabled size="large" className="border-radius--70 mb-3" color="white" block>
               Google
             </Button>
           </div>
