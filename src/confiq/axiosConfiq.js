@@ -6,10 +6,11 @@ const axiosConfig = axios.create({
 });
 
 axiosConfig.interceptors.response.use(
-  (response) => {
+  function (response) {
     return response;
   },
   async function (error) {
+    console.log(error, 'error instan');
     const originalRequest = error.config;
     const { message, statusCode } = error.response.data;
     if (statusCode === 401 && message === 'token expired' && !originalRequest._retry) {
