@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
 import './styles.scss';
 import FriendList from '@/components/molecules/FriendList';
+import FriendLoader from '@/components/molecules/FriendLoader';
 import Search from '@/components/molecules/Search';
 import Navbar from '@/components/molecules/Navbar';
 import { updateProfile, getUserById } from '@/confiq/redux/actions/user';
 import { useDispatch, useSelector } from 'react-redux';
+
 import Input from '@/components/atoms/Input';
 function Index({ handleShowMsg, backToChat, friends, setSearch, handleRender, profile, handleNav, isShow }) {
   const { userData } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const [bio, setBio] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [phone, setPhone] = useState(false);
   const [reset, setReset] = useState(false);
   const initialValue = {
@@ -40,12 +43,18 @@ function Index({ handleShowMsg, backToChat, friends, setSearch, handleRender, pr
       if (userData) {
         await dispatch(getUserById(userData.id));
         await setUserProfile(userData);
-        console.log(userProfile);
       }
     }
     getDatauser();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [profile, reset]);
+
+  React.useEffect(() => {
+    if (friends.length) {
+      setLoading(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [friends]);
 
   const handleSubmit = async (e, params) => {
     e.preventDefault();
@@ -119,7 +128,6 @@ function Index({ handleShowMsg, backToChat, friends, setSearch, handleRender, pr
                   ></Input>
                 ) : (
                   <>
-                    {console.log('l', userProfile.bio)}
                     <h4>{userProfile.bio}</h4>
                     <p className="text--dark-blue cursor--pointer" onClick={() => setBio(!bio)}>
                       Tap to change bio
@@ -134,7 +142,7 @@ function Index({ handleShowMsg, backToChat, friends, setSearch, handleRender, pr
         <>
           <Search onChange={(e) => setSearch(e.target.value)} />
           <div className="friends-wrapper">
-            {friends.length ? (
+            {friends.length && !loading ? (
               friends?.map((friend) => {
                 return (
                   <FriendList
@@ -145,6 +153,10 @@ function Index({ handleShowMsg, backToChat, friends, setSearch, handleRender, pr
                   />
                 );
               })
+            ) : loading ? (
+              <>
+                <FriendLoader fill={Number(5)} />
+              </>
             ) : (
               <p>Nama tidak ada</p>
             )}

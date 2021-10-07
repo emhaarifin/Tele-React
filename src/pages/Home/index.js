@@ -93,7 +93,6 @@ function Index({ socket }) {
         toastify(res?.data?.message || 'Berhasil menghapus pesan');
       })
       .catch((err) => {
-        console.log(err.response);
         setRefresh(!refresh);
         toastify('Ada eror');
       });
