@@ -90,11 +90,11 @@ npm start
 ## Screenshots
 
 <div align="center">
-    <img width="350" src="https://res.cloudinary.com/emhaarifin/image/upload/v1632168248/Screen_Shot_2021-09-21_at_00.35.19_rnn4vt.png">   
+    <img width="350" src="https://res.cloudinary.com/emhaarifin/image/upload/v1632168248/github/telegram/Screen_Shot_2021-09-21_at_00.35.19_rnn4vt.png">   
     <img width="350" src="https://res.cloudinary.com/emhaarifin/image/upload/v1632181960/github/telegram/Screen_Shot_2021-09-21_at_06.50.12_ittfgw.png">
 </div>
 <div align="center">
-    <img width="350" src="https://res.cloudinary.com/emhaarifin/image/upload/v1632168248/Screen_Shot_2021-09-21_at_00.35.05_dks6mb.png">
+    <img width="350" src="https://res.cloudinary.com/emhaarifin/image/upload/v1632168248/github/telegram/Screen_Shot_2021-09-21_at_00.35.05_dks6mb.png">
     <img width="350" src="https://res.cloudinary.com/emhaarifin/image/upload/v1633020947/github/telegram/4_dhxmvq.png">
 </div>
 <div align="center">
@@ -102,8 +102,8 @@ npm start
     <img width="350" src="https://res.cloudinary.com/emhaarifin/image/upload/v1633020947/github/telegram/6_cnm8vg.png">
 </div>
 <div align="center">
-    <img width="350" src="https://res.cloudinary.com/emhaarifin/image/upload/v1632168250/Screen_Shot_2021-09-21_at_00.34.28_g9xyaq.png">   
-    <img width="350" src="https://res.cloudinary.com/emhaarifin/image/upload/v1632168249/Screen_Shot_2021-09-21_at_00.34.51_xoaocf.png">
+    <img width="350" src="https://res.cloudinary.com/emhaarifin/image/upload/v1632168250/github/telegram/Screen_Shot_2021-09-21_at_00.34.28_g9xyaq.png">   
+    <img width="350" src="https://res.cloudinary.com/emhaarifin/image/upload/v1632168249/github/telegram/Screen_Shot_2021-09-21_at_00.34.51_xoaocf.png">
 </div>
 
 ## Contact
