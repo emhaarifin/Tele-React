@@ -15,13 +15,15 @@ axiosConfig.interceptors.response.use(
     const { message } = error.response.data;
     const { status } = error.response;
     if (status === 401 && message === 'token expired' && !originalRequest._retry) {
-      const refreshToken = localStorage.getItem('refreshToken');
+      const refreshToken = localStorage.getItem('REFRESH_TOKEN');
       try {
         originalRequest._retry = true;
         const data = await axios.post(`${process.env.REACT_APP_API_URL}/auth/refreshToken`, {
           refreshToken,
         });
-        error.config.headers['Authorization'] = 'Bearer ' + data.result.refreshToken;
+        error.config.headers['Authorization'] = 'Bearer ' + data.result.token;
+        localStorage.setItem('KEY_TOKEN', data.result.token);
+        localStorage.setItem('REFRESH_TOKEN', data.result.refreshToken);
         return axiosConfig(originalRequest);
       } catch (error) {
         store.dispatch({ type: 'LOGOUT' });

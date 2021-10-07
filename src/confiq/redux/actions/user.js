@@ -13,6 +13,7 @@ export const login = (body, history, setSocket) => (dispatch) => {
       dispatch({ type: 'POST_LOGIN', payload: userData });
       localStorage.setItem('KEY_TOKEN', userData.token);
       localStorage.setItem('ID_USER', userData.id);
+      localStorage.setItem('REFRESH_TOKEN', userData.refreshToken);
       const resultSocket = io(process.env.REACT_APP_API_URL, {
         query: {
           token: localStorage.getItem('KEY_TOKEN'),
