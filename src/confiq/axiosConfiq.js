@@ -10,10 +10,11 @@ axiosConfig.interceptors.response.use(
     return response;
   },
   async function (error) {
-    console.log(error, 'error instan');
+    console.log(error.response, 'error instan');
     const originalRequest = error.config;
-    const { message, statusCode } = error.response.data;
-    if (statusCode === 401 && message === 'token expired' && !originalRequest._retry) {
+    const { message } = error.response.data;
+    const { status } = error.response;
+    if (status === 401 && message === 'token expired' && !originalRequest._retry) {
       const refreshToken = localStorage.getItem('refreshToken');
       try {
         originalRequest._retry = true;
